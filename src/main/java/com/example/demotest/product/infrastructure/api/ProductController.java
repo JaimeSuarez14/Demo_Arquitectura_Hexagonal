@@ -2,6 +2,7 @@ package com.example.demotest.product.infrastructure.api;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,12 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demotest.common.mediator.Mediator;
 import com.example.demotest.product.application.command.create.ProductCreateRequest;
 import com.example.demotest.product.application.command.delete.DeleteProductRequest;
 import com.example.demotest.product.application.command.update.UpdateProductRequest;
+import com.example.demotest.product.application.query.getAlllProduct.GetAllProductRequest;
+import com.example.demotest.product.application.query.getAlllProduct.GetAllProductResponse;
 import com.example.demotest.product.application.query.getById.GetProductByIdRequest;
 import com.example.demotest.product.application.query.getById.GetProductByIdResponse;
 import com.example.demotest.product.domain.Product;
@@ -36,9 +40,11 @@ public class ProductController implements ProductApi{
 	}
 
 	@Override
-	public ResponseEntity<List<ProductDto>> getAllProducts(String pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping
+	public ResponseEntity<List<ProductDto>> getAllProducts(@RequestParam(name = "pageSize",required = false) String pageSize) {
+		GetAllProductResponse response =  mediator.dispatch(new GetAllProductRequest());
+		List<ProductDto> lista =  response.getProducts().stream().map(e -> productMapper.mapToProductDto(e)).collect(Collectors.toList());
+		return ResponseEntity.ok(lista);
 	}
 
 	@Override

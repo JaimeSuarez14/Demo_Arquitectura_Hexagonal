@@ -1,9 +1,12 @@
 package com.example.demotest.product.application.command.update;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demotest.common.mediator.RequestHandler;
 import com.example.demotest.product.domain.Product;
 import com.example.demotest.product.domain.ProductRepository;
 
+@Service
 public class UpdateProductHandler implements RequestHandler<UpdateProductRequest, Void>{
 
   private ProductRepository productRespository;
@@ -14,7 +17,7 @@ public class UpdateProductHandler implements RequestHandler<UpdateProductRequest
 
   @Override
   public Void handle(UpdateProductRequest request) {
-    Product product = new Product(null, request.getName(), request.getDescription(), request.getPrice(), request.getImage());	
+    Product product = new Product(request.getId(), request.getName(), request.getDescription(), request.getPrice(), request.getImage());	
     productRespository.upsert(product);	
     return null;
   }
