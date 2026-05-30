@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import com.example.demotest.product.domain.Product;
-import com.example.demotest.product.domain.ProductRespository;
+import com.example.demotest.product.domain.ProductRepository;
 import com.example.demotest.product.infrastructure.database.entity.ProductEntity;
 import com.example.demotest.product.infrastructure.database.mapper.ProductEntityMapper;
 
 @Repository
-public class ProductRepositoryImpl implements ProductRespository{
+public class ProductRepositoryImpl implements ProductRepository{
 	
 	private final JpaProductRepository jpaProductRepository;
 	private final ProductEntityMapper productEntityMapper;

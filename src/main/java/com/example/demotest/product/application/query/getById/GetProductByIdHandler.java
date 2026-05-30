@@ -4,14 +4,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.demotest.common.mediator.RequestHandler;
 import com.example.demotest.product.domain.Product;
-import com.example.demotest.product.domain.ProductRespository;
+import com.example.demotest.product.domain.ProductRepository;
 
 @Service
 public class GetProductByIdHandler implements RequestHandler<GetProductByIdRequest, GetProductByIdResponse> {
 
-	private ProductRespository productRespository;
+	private ProductRepository productRespository;
 
-	public GetProductByIdHandler(ProductRespository productRespository) {
+	public GetProductByIdHandler(ProductRepository productRespository) {
 		this.productRespository = productRespository;
 	}
 
