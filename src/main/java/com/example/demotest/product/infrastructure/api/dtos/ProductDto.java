@@ -1,9 +1,19 @@
 package com.example.demotest.product.infrastructure.api.dtos;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+
 public class ProductDto {
 	private Long id;
+	@NotBlank(message = "El nombre no puede estar en blanco")
 	private String name;
+	@Length(min = 10, max = 255, message = "Descripcion debe estar entre 10 y 255 palabras")
 	private String description;
+	@DecimalMin(value = "0.01", inclusive = false )
+	@DecimalMax(value = "999.99", inclusive = false )
 	private double price;
 	private String image;
 	

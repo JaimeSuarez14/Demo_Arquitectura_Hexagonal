@@ -27,6 +27,8 @@ import com.example.demotest.product.domain.Product;
 import com.example.demotest.product.infrastructure.api.dtos.ProductDto;
 import com.example.demotest.product.infrastructure.api.mapper.ProductMapper;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController implements ProductApi{
@@ -58,7 +60,7 @@ public class ProductController implements ProductApi{
 
 	@Override
 	@PostMapping
-	public ResponseEntity<Void> saveProduct(@RequestBody ProductDto productDto) {
+	public ResponseEntity<Void> saveProduct(@RequestBody @Valid ProductDto productDto) {
 		ProductCreateRequest createProduct =  this.productMapper.mapToProductCreateRequest(productDto);
 		this.mediator.dispatch(createProduct);
 		return ResponseEntity.created(URI.create("/api/v1/products/".concat(productDto.getId().toString()))).build();
@@ -66,7 +68,7 @@ public class ProductController implements ProductApi{
 
 	@Override
 	@PutMapping
-	public ResponseEntity<Void> updateProduct(@RequestBody  ProductDto product) {
+	public ResponseEntity<Void> updateProduct(@RequestBody @Valid  ProductDto product) {
 		UpdateProductRequest update =  this.productMapper.mapToUpdateProductRequest(product);
 		this.mediator.dispatch(update);
 		return ResponseEntity.ok().build();
