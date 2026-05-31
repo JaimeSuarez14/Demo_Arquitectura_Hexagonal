@@ -1,6 +1,6 @@
 package com.example.demotest.product.application.query.getById;
 
-import com.example.demotest.product.domain.Product;
+import com.example.demotest.product.domain.entity.Product;
 
 public class GetProductByIdResponse {
   private Product product;

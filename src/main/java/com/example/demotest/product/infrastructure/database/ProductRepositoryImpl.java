@@ -5,8 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demotest.product.domain.Product;
-import com.example.demotest.product.domain.ProductRepository;
+import com.example.demotest.product.domain.entity.Product;
+import com.example.demotest.product.domain.exception.ProductNotFoundException;
+import com.example.demotest.product.domain.port.ProductRepository;
 import com.example.demotest.product.infrastructure.database.entity.ProductEntity;
 import com.example.demotest.product.infrastructure.database.mapper.ProductEntityMapper;
 
@@ -30,8 +31,8 @@ public class ProductRepositoryImpl implements ProductRepository{
 
 	@Override
 	public Optional<Product> findById(Long id) {
-		Optional<ProductEntity> entity =  jpaProductRepository.findById(id);
-		Product product =  productEntityMapper.mapToProduct(entity.get());
+		ProductEntity entity =  jpaProductRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
+		Product product =  productEntityMapper.mapToProduct(entity);
 		return Optional.of(product);
 	}
 

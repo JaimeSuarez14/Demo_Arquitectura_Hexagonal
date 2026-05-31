@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demotest.common.mediator.RequestHandler;
-import com.example.demotest.product.domain.Product;
-import com.example.demotest.product.domain.ProductRepository;
+import com.example.demotest.product.domain.entity.Product;
+import com.example.demotest.product.domain.port.ProductRepository;
 
 @Service
 public class GetAllProductHandler implements RequestHandler<GetAllProductRequest, GetAllProductResponse> {

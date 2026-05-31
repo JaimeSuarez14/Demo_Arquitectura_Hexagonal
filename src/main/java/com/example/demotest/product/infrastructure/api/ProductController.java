@@ -23,7 +23,7 @@ import com.example.demotest.product.application.query.getAlllProduct.GetAllProdu
 import com.example.demotest.product.application.query.getAlllProduct.GetAllProductResponse;
 import com.example.demotest.product.application.query.getById.GetProductByIdRequest;
 import com.example.demotest.product.application.query.getById.GetProductByIdResponse;
-import com.example.demotest.product.domain.Product;
+import com.example.demotest.product.domain.entity.Product;
 import com.example.demotest.product.infrastructure.api.dtos.ProductDto;
 import com.example.demotest.product.infrastructure.api.mapper.ProductMapper;
 

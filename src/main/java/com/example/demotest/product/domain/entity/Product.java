@@ -1,4 +1,4 @@
-package com.example.demotest.product.domain;
+package com.example.demotest.product.domain.entity;
 
 public class Product {
 

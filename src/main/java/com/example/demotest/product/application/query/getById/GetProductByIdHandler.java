@@ -3,8 +3,9 @@ package com.example.demotest.product.application.query.getById;
 import org.springframework.stereotype.Service;
 
 import com.example.demotest.common.mediator.RequestHandler;
-import com.example.demotest.product.domain.Product;
-import com.example.demotest.product.domain.ProductRepository;
+import com.example.demotest.product.domain.entity.Product;
+import com.example.demotest.product.domain.exception.ProductNotFoundException;
+import com.example.demotest.product.domain.port.ProductRepository;
 
 @Service
 public class GetProductByIdHandler implements RequestHandler<GetProductByIdRequest, GetProductByIdResponse> {
@@ -18,7 +19,7 @@ public class GetProductByIdHandler implements RequestHandler<GetProductByIdReque
 	@Override
 	public GetProductByIdResponse handle(GetProductByIdRequest request) {
 		Product product = productRespository.findById(request.getId())
-				.orElseThrow(() -> new IllegalArgumentException("Product Not Found"));
+				.orElseThrow(() -> new ProductNotFoundException("Producto no encontrado con ese Id : " + request.getId()));
 		return new GetProductByIdResponse(product);
 	}
 

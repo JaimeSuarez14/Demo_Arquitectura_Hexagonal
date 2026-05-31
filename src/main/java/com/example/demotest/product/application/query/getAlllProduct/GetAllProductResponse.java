@@ -2,7 +2,7 @@ package com.example.demotest.product.application.query.getAlllProduct;
 
 import java.util.List;
 
-import com.example.demotest.product.domain.Product;
+import com.example.demotest.product.domain.entity.Product;
 
 public class GetAllProductResponse {
   private List<Product> products;
